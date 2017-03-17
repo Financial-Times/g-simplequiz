@@ -38,6 +38,8 @@
     <body>
         <h1>{{options.title}}</h1>
         <p>{{options.subtitle}}</p>
+        <img src="{{options.imageServiceURL}}" width="675" height="380">
+        <div>©{{options.imagecredit}}</div>
     {% for row in data %}
 
         <div class="question" data-answer="{{row.answer}}">{{ row.question|safe }}

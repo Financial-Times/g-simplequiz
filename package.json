@@ -2,8 +2,8 @@
   "name": "stupid-quiz",
   "version": "1.0.0",
   "description": "",
-  "engines":{
-    "node":"v6.5.0"
+  "engines": {
+    "node": "v6.5.0"
   },
   "main": "index.js",
   "scripts": {
@@ -15,6 +15,7 @@
   "dependencies": {
     "express": "^4.14.0",
     "fetch": "^1.1.0",
+    "lru-cache": "^4.0.2",
     "nunjucks": "^3.0.0"
   }
 }
