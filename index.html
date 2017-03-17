@@ -1,17 +1,78 @@
 <html>
     <head>
-        
+        <title>Quiz: {{options.title}}</title>
     </head>
+    <style>
+
+    body{
+        font-family: sans-serif;
+    }
+
+    .option.correct{
+        background-color: #0F0;
+    }
+
+    .option.incorrect{
+        background-color: #F00;
+    }
+    .result{
+        font-size: 30;
+    }
+    </style>
     <body>
         <h1>{{options.title}}</h1>
         <p>{{options.subtitle}}</p>
     {% for row in data %}
-        {{ row.question|safe }}
-        <ul>
+        <div class="question" data-answer="{{row.answer}}">{{ row.question|safe }}
         {% for key, item in row.option %}
-            <li>{{key}}: {{ item }}</li>
+            <button class="option" data-selected="false">{{ item }}</button>
         {% endfor %}
-        </ul>
+        <div class="answer"></div>
     {% endfor %}
+    <div class="result"></div>
     </body>
+    <script>
+        //wire up the quiz
+        var tally = {
+            correct: 0,
+            incorrect: 0,
+            total: document.querySelectorAll('.question').length
+        };
+
+        document.querySelectorAll('.question')
+            .forEach((questionContainer,i)=>{
+                var answer = questionContainer.dataset.answer;
+                questionContainer.querySelectorAll('button')
+                    .forEach((e,j)=>{
+                        e.onclick = buttonClick(answer, questionContainer);
+                    });
+            });
+
+        function buttonClick(correctAnswer, parent){
+            return function(ev){
+                console.log('click...')
+                if(ev.target.innerHTML == correctAnswer){
+                    tally.correct ++;
+                    ev.target.className = "option correct";
+                }else{
+                    tally.incorrect ++;
+                    ev.target.className = "option incorrect";
+                }
+                console.log(parent);
+                parent.querySelectorAll(':scope > button')
+                    .forEach((b)=>{
+                        b.disabled = true;
+                    });
+
+                complete();
+            }
+        }
+
+        function complete(){
+            if((tally.correct + tally.incorrect) === tally.total){
+                document.querySelector('.result')
+                    .innerHTML = 'You scored ' + tally.correct + '/' + tally.incorrect;
+            }
+        }
+    </script>
 </html>
