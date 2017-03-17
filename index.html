@@ -17,17 +17,37 @@
     }
     .result{
         font-size: 30;
+        padding: 20;
+    }
+    .question{
+        background-color: #EEE; 
+    }
+    .answer{
+        border: solid 1px black;
+        padding: 20px;
+    }
+
+    .incomplete{
+        display: none;
+    }
+
+    .complete{
+        display: block;
     }
     </style>
     <body>
         <h1>{{options.title}}</h1>
         <p>{{options.subtitle}}</p>
     {% for row in data %}
+
         <div class="question" data-answer="{{row.answer}}">{{ row.question|safe }}
         {% for key, item in row.option %}
             <button class="option" data-selected="false">{{ item }}</button>
         {% endfor %}
-        <div class="answer"></div>
+            <div class="answer incomplete">
+                {{ row.answercopy }}
+            </div>
+        </div>
     {% endfor %}
     <div class="result"></div>
     </body>
@@ -58,11 +78,14 @@
                     tally.incorrect ++;
                     ev.target.className = "option incorrect";
                 }
-                console.log(parent);
+
                 parent.querySelectorAll(':scope > button')
                     .forEach((b)=>{
                         b.disabled = true;
                     });
+
+                parent.querySelector(':scope > .answer')
+                    .className = 'answer complete';
 
                 complete();
             }
