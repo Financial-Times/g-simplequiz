@@ -7,7 +7,8 @@ var port = (process.env.PORT || 3000)
 var app = express();
 
 app.get('/', function (req, res) {
-  res.send('Q1. did you supply a quiz id in your URL?');
+    res.status(404)
+        .send('<h1>Q1. Did you supply a quiz ID in your URL?</h1>');
 });
 
 app.get('/:id', function (req, res) {
@@ -17,7 +18,6 @@ app.get('/:id', function (req, res) {
         res.send( nunjucks.render('index.html', JSON.parse( body )) );
     });
 });
-
 
 app.listen(port , function () {
     console.log('Example app listening '+ port +' !');
