@@ -2,6 +2,8 @@ var express = require('express');
 var fetchUrl = require('fetch').fetchUrl;
 var nunjucks = require('nunjucks');
 
+var port = (process.env.PORT || 3000)
+
 var app = express();
 
 app.get('/', function (req, res) {
@@ -16,6 +18,7 @@ app.get('/:id', function (req, res) {
     });
 });
 
-app.listen(3000, function () {
-    console.log('Example app listening on port 3000!');
+
+app.listen(port , function () {
+    console.log('Example app listening '+ port +' !');
 })
