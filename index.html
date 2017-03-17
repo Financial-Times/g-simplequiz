@@ -42,11 +42,9 @@
 
         <div class="question" data-answer="{{row.answer}}">{{ row.question|safe }}
         {% for key, item in row.option %}
-            <button class="option" data-selected="false">{{ item }}</button>
+            <button class="answer-option" data-selected="false">{{ item }}</button>
         {% endfor %}
-            <div class="answer incomplete">
-                {{ row.answercopy }}
-            </div>
+            {% if row.answercopy %}<div class="answer incomplete"> {{ row.answercopy }} </div>{% endif %}
         </div>
     {% endfor %}
     <div class="result"></div>
@@ -62,7 +60,7 @@
         document.querySelectorAll('.question')
             .forEach((questionContainer,i)=>{
                 var answer = questionContainer.dataset.answer;
-                questionContainer.querySelectorAll('button')
+                questionContainer.querySelectorAll('.answer-option')
                     .forEach((e,j)=>{
                         e.onclick = buttonClick(answer, questionContainer);
                     });
