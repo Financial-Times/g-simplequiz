@@ -1,0 +1,17 @@
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <h1>{{options.title}}</h1>
+        <p>{{options.subtitle}}</p>
+    {% for row in data %}
+        {{ row.question|safe }}
+        <ul>
+        {% for key, item in row.option %}
+            <li>{{key}}: {{ item }}</li>
+        {% endfor %}
+        </ul>
+    {% endfor %}
+    </body>
+</html>
