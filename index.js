@@ -29,20 +29,26 @@ app.get('/', function (req, res) {
 
 app.get('/:id', function (req, res) {
     var uuid = req.params.id;
+    var frame = 'false';
+    if(req.query.frame){
+        frame = req.query.frame;
+        console.log(frame);
+    }
     var berthaID = berthakeys[uuid];
     if(berthaID){
-        var cached = cache.get(berthaID);
+        var cached = cache.get(String(frame) + berthaID);
         if(cached) {
             res.send( cached ); 
         } else {
             fetchUrl(`http://bertha.ig.ft.com/republish/publish/ig/${berthaID}/basic`, function(error, meta, body){
                 var data = JSON.parse( body );
                 data.uuid = uuid;
+                data.options.frame = frame;
                 if(data.options.headerimage){
                     data.options.imageServiceURL = `https://www.ft.com/__origami/service/image/v2/images/raw/ftcms%3A${data.options.headerimage}?source=ig&width=675&height=380`
                 }
                 var html = nunjucks.render('templates/index.html', data);
-                cache.set(berthaID, html);
+                cache.set(String(frame) + berthaID, html);
                 res.send( html );
             });
         }

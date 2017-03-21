@@ -1,4 +1,8 @@
+{% if options.frame == 'true' %}
+{% include "templates/framed-header.html" %}
+{% else %} 
 {% include "templates/header.html" %}
+{% endif %}
     <style>
 
     body{
@@ -50,7 +54,11 @@
     {% endfor %}
     <div class="result"></div>
 
-    {% include "templates/footer.html" %}
+{% if options.frame == 'true' %}
+{% include "templates/framed-footer.html" %}
+{% else %} 
+{% include "templates/footer.html" %}
+{% endif %}
 
     </body>
     <script>
