@@ -5,10 +5,31 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 	<title>{{options.title}} &ndash; FT.com</title>
 	<meta name="viewport" content="initial-scale=1.0, width=device-width">
+	<script>
+		var cutsTheMustard = ('querySelector' in document && 'localStorage' in window && 'addEventListener' in window);
+		if (cutsTheMustard) {
+			document.documentElement.className = document.documentElement.className.replace(/\bcore\b/g, 'enhanced');
+		}
+	</script>
+	<style>
+		.core .o--if-js,
+		.enhanced .o--if-no-js { display: none !important; }
+
+		html {
+			font-family: Georgia, serif;
+			overflow-x: hidden;
+		}
+
+		body {
+			margin: 0;
+		}
+
+		/* Add any other inline styles here */
+	</style>
 	<script src="//cdn.polyfill.io/v2/polyfill.min.js?features=customevent,default"></script>
 	<style>body { margin: 0; } .core .o--if-js, .enhanced .o--if-no-js { display: none !important; }</style>
 	<script>(function(d) { d.className = d.className + ' demo-js'; })(document.documentElement);</script>
-	<link rel="stylesheet" href="https://www.ft.com/__origami/service/build/v2/bundles/css?modules=o-header@6.14.1,o-footer@5.4.0">
+	<link rel="stylesheet" href="https://www.ft.com/__origami/service/build/v2/bundles/css?modules=o-header@6.14.1,o-footer@5.4.0,o-buttons@^4.5.4">
 </head>
 <body>
 <header class="o-header o-header--simple" data-o-component="o-header" data-o-header--no-js="">
@@ -63,7 +84,7 @@
 	<div class="o-header__drawer-inner">
 
 		<div class="o-header__drawer-tools">
-			<a class="o-header__drawer-tools-logo" href="/">
+			<a class="o-header__drawer-tools-logo" href="http://www.ft.com">
 				<span class="o-header__visually-hidden">Financial Times</span>
 			</a>
 			<button type="button" class="o-header__drawer-tools-close" aria-controls="o-header-drawer" title="Close drawer menu">

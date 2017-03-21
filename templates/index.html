@@ -7,13 +7,14 @@
 <style>{% include "templates/quiz-body.css" %}</style>
 
     {% for row in data %}
-
-        <div class="question" data-answer="{{row.answer}}">{{ row.question|safe }}
+    <div class="question-container" data-answer="{{row.answer}}">
+        <div class="question">{{ row.question|safe }}
         {% for key, item in row.option %}
-            <button class="answer-option" data-selected="false">{{ item }}</button>
+            {% if item %}<button class="answer-option o-buttons o-buttons--standout" data-selected="false">{{ item }}</button>{% endif %}
         {% endfor %}
             {% if row.answercopy %}<div class="answer incomplete"> {{ row.answercopy }} </div>{% endif %}
         </div>
+    </div>
     {% endfor %}
     <div class="result"></div>
 
@@ -25,15 +26,16 @@
 
     </body>
     <script>
-        
-    (function(){  //wire up the quiz
+
+    (function(mustard){  //wire up the quiz
+        if(!mustard) return;
         var tally = {
             correct: 0,
             incorrect: 0,
-            total: document.querySelectorAll('.question').length
+            total: document.querySelectorAll('.question-container').length
         };
 
-        document.querySelectorAll('.question')
+        document.querySelectorAll('.question-container')
             .forEach((questionContainer,i)=>{
                 var answer = questionContainer.dataset.answer;
                 questionContainer.querySelectorAll('.answer-option')
@@ -46,18 +48,18 @@
             return function(ev){
                 if(ev.target.innerHTML == correctAnswer){
                     tally.correct ++;
-                    ev.target.className = "option correct";
+                    ev.target.classList.add('correct');
                 }else{
                     tally.incorrect ++;
-                    ev.target.className = "option incorrect";
+                    ev.target.classList.add('incorrect');
                 }
 
-                parent.querySelectorAll(':scope > button')
+                parent.querySelectorAll(':scope button')
                     .forEach((b)=>{
                         b.disabled = true;
                     });
 
-                parent.querySelector(':scope > .answer')
+                parent.querySelector(':scope .answer')
                     .className = 'answer complete';
 
                 complete();
@@ -65,11 +67,12 @@
         }
 
         function complete(){
+            console.log('complete?')
             if((tally.correct + tally.incorrect) === tally.total){
                 document.querySelector('.result')
                     .innerHTML = 'You scored ' + tally.correct + '/' + (tally.incorrect + tally.correct);
             }
         }
-    })();
+    })(cutsTheMustard);
     </script>
 </html>

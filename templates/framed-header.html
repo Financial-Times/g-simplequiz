@@ -1,6 +1,26 @@
 <html>
     <head>
         <title>{{options.title}} &ndash; FT.com</title>
+        <script>    
+        var cutsTheMustard = ('querySelector' in document && 'localStorage' in window && 'addEventListener' in window);
+        if (cutsTheMustard) {
+            document.documentElement.className = document.documentElement.className.replace(/\bcore\b/g, 'enhanced');
+        }
+        </script>
+        <style>
+        <style>
+		.core .o--if-js,
+		.enhanced .o--if-no-js { display: none !important; }
+    	html {
+			overflow-x: hidden;
+		}
+
+		body {
+			margin: 0;
+		}
+        </style>
+        <link rel="stylesheet"
+	href="https://www.ft.com/__origami/service/build/v2/bundles/css?modules=o-buttons@^4.5.4,o-fonts@^2.2.0" />
     </head>
     <body>
     <h1>{{options.title}}</h1>

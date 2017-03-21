@@ -1,21 +1,25 @@
 body{
     font-family: sans-serif;
+    background-color: #fff1e0;
 }
 
-.option.correct{
-    background-color: #0F0;
+
+button.correct[disabled]{
+    opacity: 1;
+    background-color: #B6C982;
+    color: white;
 }
 
-.option.incorrect{
-    background-color: #F00;
+button.incorrect[disabled]{
+    opacity: 1;
+    color: white;
+    background-color: #DE9186;
 }
 .result{
     font-size: 30;
     padding: 20;
 }
-.question{
-    background-color: #EEE; 
-}
+
 .answer{
     border: solid 1px black;
     padding: 20px;
