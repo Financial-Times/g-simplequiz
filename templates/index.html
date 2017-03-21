@@ -8,11 +8,11 @@
 
     {% for row in data %}
     <div class="question-container" data-answer="{{row.answer}}">
-        <div class="question">{{ row.question|safe }}
+        <div class="question o-typography-subhead--standard">{{ row.question|safe }}
         {% for key, item in row.option %}
             {% if item %}<button class="answer-option o-buttons o-buttons--standout" data-selected="false">{{ item }}</button>{% endif %}
         {% endfor %}
-            {% if row.answercopy %}<div class="answer incomplete"> {{ row.answercopy }} </div>{% endif %}
+            {% if row.answercopy %}<div class="answer incomplete o-typography-body"> {{ row.answercopy }} </div>{% endif %}
         </div>
     </div>
     {% endfor %}
@@ -60,7 +60,7 @@
                     });
 
                 parent.querySelector(':scope .answer')
-                    .className = 'answer complete';
+                    .classList.add('complete');
 
                 complete();
             }
