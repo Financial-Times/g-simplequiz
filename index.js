@@ -41,7 +41,7 @@ app.get('/:id', function (req, res) {
                 if(data.options.headerimage){
                     data.options.imageServiceURL = `https://www.ft.com/__origami/service/image/v2/images/raw/ftcms%3A${data.options.headerimage}?source=ig&width=675&height=380`
                 }
-                var html = nunjucks.render('index.html', data);
+                var html = nunjucks.render('templates/index.html', data);
                 cache.set(berthaID, html);
                 res.send( html );
             });
@@ -53,5 +53,5 @@ app.get('/:id', function (req, res) {
 });
 
 app.listen(port , function () {
-    console.log('Example app listening '+ port +' !');
+    console.log('Quiz app on port: '+ port +' !');
 })

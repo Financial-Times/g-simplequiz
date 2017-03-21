@@ -1,7 +1,4 @@
-<html>
-    <head>
-        <title>Quiz: {{options.title}}</title>
-    </head>
+{% include "templates/header.html" %}
     <style>
 
     body{
@@ -35,11 +32,13 @@
         display: block;
     }
     </style>
-    <body>
         <h1>{{options.title}}</h1>
         <p>{{options.subtitle}}</p>
         <img src="{{options.imageServiceURL}}" width="675" height="380">
         <div>©{{options.imagecredit}}</div>
+        <div>
+            {{options.intro}}
+        </div>
     {% for row in data %}
 
         <div class="question" data-answer="{{row.answer}}">{{ row.question|safe }}
@@ -50,6 +49,9 @@
         </div>
     {% endfor %}
     <div class="result"></div>
+
+    {% include "templates/footer.html" %}
+
     </body>
     <script>
         //wire up the quiz
@@ -94,7 +96,7 @@
         function complete(){
             if((tally.correct + tally.incorrect) === tally.total){
                 document.querySelector('.result')
-                    .innerHTML = 'You scored ' + tally.correct + '/' + tally.incorrect;
+                    .innerHTML = 'You scored ' + tally.correct + '/' + (tally.incorrect + tally.correct);
             }
         }
     </script>
