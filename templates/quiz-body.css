@@ -1,0 +1,30 @@
+body{
+    font-family: sans-serif;
+}
+
+.option.correct{
+    background-color: #0F0;
+}
+
+.option.incorrect{
+    background-color: #F00;
+}
+.result{
+    font-size: 30;
+    padding: 20;
+}
+.question{
+    background-color: #EEE; 
+}
+.answer{
+    border: solid 1px black;
+    padding: 20px;
+}
+
+.incomplete{
+    display: none;
+}
+
+.complete{
+    display: block;
+}

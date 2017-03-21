@@ -8,7 +8,7 @@
 	<script src="//cdn.polyfill.io/v2/polyfill.min.js?features=customevent,default"></script>
 	<style>body { margin: 0; } .core .o--if-js, .enhanced .o--if-no-js { display: none !important; }</style>
 	<script>(function(d) { d.className = d.className + ' demo-js'; })(document.documentElement);</script>
-	<link rel="stylesheet" href="https://www.ft.com/__origami/service/build/v2/bundles/css?modules=o-header@6.14.1">
+	<link rel="stylesheet" href="https://www.ft.com/__origami/service/build/v2/bundles/css?modules=o-header@6.14.1,o-footer@5.4.0">
 </head>
 <body>
 <header class="o-header o-header--simple" data-o-component="o-header" data-o-header--no-js="">
@@ -27,7 +27,7 @@
 
 				<div class="o-header__top-column o-header__top-column--center">
 					<!--<div class="o-header__top-takeover"></div>-->
-					<a class="o-header__top-logo" href="//www.ft.com/__origami/service/build/" title="Go to Financial Times homepage">
+					<a class="o-header__top-logo" href="//www.ft.com" title="Go to Financial Times homepage">
 						<span class="o-header__visually-hidden">Financial Times</span>
 					</a>
 				</div>
@@ -393,4 +393,11 @@
 
 	</div>
 </div>
-<script src="https://www.ft.com/__origami/service/build/v2/bundles/js?modules=o-header@6.14.1" async></script>
+
+<h1>{{options.title}}</h1>
+<p>{{options.subtitle}}</p>
+<img src="{{options.imageServiceURL}}" width="675" height="380">
+<div>©{{options.imagecredit}}</div>
+<div>
+    {{options.intro}}
+</div>

@@ -42,6 +42,21 @@ app.get('/:id', function (req, res) {
         } else {
             fetchUrl(`http://bertha.ig.ft.com/republish/publish/ig/${berthaID}/basic`, function(error, meta, body){
                 var data = JSON.parse( body );
+                if(data.credits){
+                    data.credits.people = [];
+                    data.credits.sources = [];
+                    data.credits.forEach(function(d){
+                        if(d.type === 'credit'){
+                            data.credits.people.push({ name:d.name, url:d.url,});
+                        }
+                        else if(d.type === 'source'){
+                            data.credits.sources.push({ name:d.name, url:d.url,})
+                        }else if(d.type === 'date'){
+                            data.credits.date = d.name;
+                        }
+                    });
+                }
+                if(data.options === undefined) data.options = {};
                 data.uuid = uuid;
                 data.options.frame = frame;
                 if(data.options.headerimage){

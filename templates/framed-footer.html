@@ -1,1 +1,9 @@
-FRAMED FOOTER
+{% if credits.sources.length > 0 %}
+<div>Source: {% for s in credits.sources %}<a href="{{s.url}}">{{s.name}}</a> {% endfor %}</div>
+{% endif %}
+{{credits.date}}
+{% if credits.people.length > 0 %}
+<div>{% for p in credits.people %}<a href="{{p.url}}">{{p.name}}</a> {% endfor %}</div>
+{% endif %}
+</body>
+</html>

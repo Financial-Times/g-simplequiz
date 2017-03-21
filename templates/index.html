@@ -3,46 +3,9 @@
 {% else %} 
 {% include "templates/header.html" %}
 {% endif %}
-    <style>
 
-    body{
-        font-family: sans-serif;
-    }
+<style>{% include "templates/quiz-body.css" %}</style>
 
-    .option.correct{
-        background-color: #0F0;
-    }
-
-    .option.incorrect{
-        background-color: #F00;
-    }
-    .result{
-        font-size: 30;
-        padding: 20;
-    }
-    .question{
-        background-color: #EEE; 
-    }
-    .answer{
-        border: solid 1px black;
-        padding: 20px;
-    }
-
-    .incomplete{
-        display: none;
-    }
-
-    .complete{
-        display: block;
-    }
-    </style>
-        <h1>{{options.title}}</h1>
-        <p>{{options.subtitle}}</p>
-        <img src="{{options.imageServiceURL}}" width="675" height="380">
-        <div>©{{options.imagecredit}}</div>
-        <div>
-            {{options.intro}}
-        </div>
     {% for row in data %}
 
         <div class="question" data-answer="{{row.answer}}">{{ row.question|safe }}
@@ -62,7 +25,8 @@
 
     </body>
     <script>
-        //wire up the quiz
+        
+    (function(){  //wire up the quiz
         var tally = {
             correct: 0,
             incorrect: 0,
@@ -80,7 +44,6 @@
 
         function buttonClick(correctAnswer, parent){
             return function(ev){
-                console.log('click...')
                 if(ev.target.innerHTML == correctAnswer){
                     tally.correct ++;
                     ev.target.className = "option correct";
@@ -107,5 +70,6 @@
                     .innerHTML = 'You scored ' + tally.correct + '/' + (tally.incorrect + tally.correct);
             }
         }
+    })();
     </script>
 </html>
