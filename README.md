@@ -1,16 +1,17 @@
-#Simple quiz
+# Simple quiz
 
-for developement
+developement : 
 ```sh
 npm install
 npm run start
 ```
-#Making a quiz
+
+## Making a quiz
 
 http://localhost:3000/test
 
 http://localhost:3000/test?frame=true
 
-##Spreadsheet properties
+## Spreadsheet properties
 
 ...
